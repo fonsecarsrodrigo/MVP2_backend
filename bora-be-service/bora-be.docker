@@ -1,0 +1,17 @@
+# Build from repository root:
+#   docker build -f bora-be-service/bora-be.docker -t bora-be .
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+COPY bora-be-service/ .
+
+ENV FLASK_APP=customer_area.py
+ENV FLASK_ENV=development
+
+EXPOSE 5001
+
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5001"]
