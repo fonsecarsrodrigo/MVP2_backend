@@ -30,14 +30,14 @@ source venv/bin/activate   # macOS / Linux
 pip install -r requirements.txt
 ```
 
-Equivalent Make targets: `make create_venv`, then run the command printed by `make activate_venv`, then `make install_dependencies`.
+Equivalent Make targets: `make venv-create`, then run the command printed by `make venv-activate`, then `make venv-install-dependencies`.
 
 ## Run the server
 
 From the repository root (with the venv active and dependencies installed):
 
 ```bash
-make run
+make server-run
 ```
 
 This runs `flask run` inside `bora-be-service` on port **5001** (process is started in the background). Open the app in a browser:
@@ -52,7 +52,7 @@ The API exposes JSON endpoints for customers and travel plans (for example `/add
 Stops Flask processes matching `flask` and removes `*.sqlite3` files in `bora-be-service/database_model/database/`:
 
 ```bash
-make clear
+make server-clear
 ```
 
 ## Seed sample data
@@ -60,19 +60,19 @@ make clear
 The seed script calls the running API. Start the server first, then:
 
 ```bash
-make seed
+make server-seed
 ```
 
 By default it targets `http://0.0.0.0:5001`. Override with `SEED_API_BASE` if needed:
 
 ```bash
-SEED_API_BASE=http://127.0.0.1:5001 make seed
+SEED_API_BASE=http://127.0.0.1:5001 make server-seed
 ```
 
 ## Lint
 
 ```bash
-make ruff
+make server-lint
 ```
 
 ## Docker
@@ -80,8 +80,8 @@ make ruff
 From the repository root (build context must be the root so `requirements.txt` and `bora-be-service/` are available):
 
 ```bash
-make docker-be-build
-make docker-be-run
+make docker-build
+make docker-run
 ```
 
 The container listens on port **5001** and mounts `./bora-be-service/database_model/database` so the SQLite file persists on the host.
@@ -94,15 +94,20 @@ make docker-stop
 
 ## Makefile reference
 
+Targets are listed in alphabetical order (same as the `Makefile`).
+
 | Target | Description |
 |--------|-------------|
-| `run` | Start Flask on port 5001 from `bora-be-service` |
-| `clear` | Kill matching Flask processes; remove `*.sqlite3` under `database_model/database/` |
-| `seed` | Run `scripts/seed_database.py` against the API |
-| `install_dependencies` | `pip3 install -r requirements.txt` |
-| `create_venv` / `clear_venv` / `delete_venv` | Manage `venv/` at repo root |
-| `activate_venv` / `deactivate_venv` | Print reminders (venv cannot be activated from Make alone) |
-| `ruff` | Run Ruff on the repository |
-| `docker-be-build` | Build image `bora-be` |
-| `docker-be-run` | Run container on port 5001 with DB volume mount |
+| `docker-build` | Build Docker image `bora-be` (context: repo root) |
+| `docker-run` | Run container on port 5001 with DB volume mount |
 | `docker-stop` | Stop all running Docker containers |
+| `server-clear` | Kill matching Flask processes; remove `*.sqlite3` under `database_model/database/` |
+| `server-lint` | Run Ruff on the repository |
+| `server-run` | Start Flask on port 5001 from `bora-be-service` |
+| `server-seed` | Run `scripts/seed_database.py` against the API |
+| `venv-activate` | Print the `source …/venv/bin/activate` command |
+| `venv-clear` | Remove `venv/` |
+| `venv-create` | Create `venv/` with `python3 -m venv` |
+| `venv-deactivate` | Reminder to run `deactivate` in your shell |
+| `venv-delete` | Remove `venv/` (same as `venv-clear`) |
+| `venv-install-dependencies` | `pip3 install -r requirements.txt` |

@@ -12,7 +12,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-# Default matches `make run` / `flask run --port=5001`
+# Default matches `make server-run` / `flask run --port=5001`
 DEFAULT_API_BASE = "http://0.0.0.0:5001"
 
 
@@ -220,7 +220,7 @@ def _post_form(base_url: str, path: str, payload: dict) -> dict:
         raise RuntimeError(f"{path} failed (HTTP {e.code}): {msg}") from e
     except URLError as e:
         raise RuntimeError(
-            f"Could not reach API at {base_url}. Start the server (e.g. `make run`). "
+            f"Could not reach API at {base_url}. Start the server (e.g. `make server-run`). "
             f"Underlying error: {e}"
         ) from e
 

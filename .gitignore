@@ -1,0 +1,4 @@
+
+# Ignore virtual environment folder
+venv/
+bora-be-service/database_model/database/
