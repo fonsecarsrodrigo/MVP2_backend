@@ -9,9 +9,9 @@ docker-build:
 docker-run:
 	docker run --rm -p 5001:5001 -v ./bora-be-service/database_model/database:/app/database_model/database bora-be &
 
-# Stop every running container (no-op if none are running)
+# Stop bora-be containers only (no-op if none are running)
 docker-stop:
-	@ids=$$(docker ps -q); [ -n "$$ids" ] && docker stop $$ids || true
+	@ids=$$(docker ps -q --filter ancestor=bora-be); [ -n "$$ids" ] && docker stop $$ids || true
 
 server-clear:
 	@pkill -f flask || true
