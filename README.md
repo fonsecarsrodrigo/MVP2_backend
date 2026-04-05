@@ -2,6 +2,12 @@
 
 Backend service for customer and travel-plan data. It is a **Flask** application with **OpenAPI** documentation (**flask-openapi3**), **SQLAlchemy** models, and a **SQLite** database under `bora-be-service/database_model/database/`.
 
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+
 ## Repository layout
 
 | Path | Purpose |
