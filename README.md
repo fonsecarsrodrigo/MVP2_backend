@@ -4,19 +4,32 @@ Backend service for customer and travel-plan data. It is a **Flask** application
 
 ```mermaid
 C4Context
-    title Bora Orneles Customer Area API
+    title Bora Orneles Customer Area
+        Person(customerA, "Bora Orneles Customer")
+        Person(employeeA, "Bora Orneles Employee")
+
+    Enterprise_Boundary(b1, "VIA CEP - https://www.viacep.com.br")
+    {
+        System(VIA_CEP-API, "VIA CEP API")
+        Rel(Bora-FE, VIA_CEP-API, "")
+    }
 
     Enterprise_Boundary(b0, "Bora Orneles Customer Area API") {
-        Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
 
-        Container_Boundary(c0, "Bora Orneles - Backend Service - Docker") {
-            System(Bora-FE, "Bora Orneles Backend - Server")
+        BiRel(customerA, Bora-FE, "")
+        BiRel(employeeA, Bora-FE, "")
+
+        Container_Boundary(c0, " Frontend Service - bora-fe.docker") {
+            System(Bora-FE, "Bora Orneles Frontend - HTML Page")
+            Rel(Bora-FE, Bora-BE, "")
         }
 
 
-         Container_Boundary(c1, "Bora Orneles - Backend Service - Docker") {
+         Container_Boundary(c1, "Backend Service - bora-be.docker") {
             System(Bora-BE, "Bora Orneles Backend - Server")
-            System(Bora-DB, "Bora Orneles Database - DB")
+            ContainerDb(Bora-DB, "Bora Orneles Database - DB", "Stores data")
+  
+            Rel(Bora-BE, Bora-DB, "")
          }
     }
 ```
