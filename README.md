@@ -3,11 +3,22 @@
 Backend service for customer and travel-plan data. It is a **Flask** application with **OpenAPI** documentation (**flask-openapi3**), **SQLAlchemy** models, and a **SQLite** database under `bora-be-service/database_model/database/`.
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+C4Context
+    title Bora Orneles Customer Area API
+
+    Enterprise_Boundary(b0, "Bora Orneles Customer Area API") {
+        Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
+
+        Container_Boundary(c0, "Bora Orneles - Backend Service - Docker") {
+            System(Bora-FE, "Bora Orneles Backend - Server")
+        }
+
+
+         Container_Boundary(c1, "Bora Orneles - Backend Service - Docker") {
+            System(Bora-BE, "Bora Orneles Backend - Server")
+            System(Bora-DB, "Bora Orneles Database - DB")
+         }
+    }
 ```
 ## Repository layout
 
