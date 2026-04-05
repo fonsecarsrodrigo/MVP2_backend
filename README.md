@@ -1,6 +1,9 @@
 # Bora Orneles — Customer Area API
 
-Backend service for customer and travel-plan data. It is a **Flask** application with **OpenAPI** documentation (**flask-openapi3**), **SQLAlchemy** models, and a **SQLite** database under `bora-be-service/database_model/database/`.
+## System Diagram
+
+The system is composed by two services, the "Bora Orneles Backend Service" and the "Bora Orneles Frontend Service".
+The Frontend Service uses an external API, the "Via CEP" to acquire address information from CEP number.
 
 ```mermaid
 C4Context
@@ -33,6 +36,10 @@ C4Context
          }
     }
 ```
+
+## Backend Service
+Backend service for customer and travel-plan data. It is a **Flask** application with **OpenAPI** documentation (**flask-openapi3**), **SQLAlchemy** models, and a **SQLite** database under `bora-be-service/database_model/database/`.
+
 ## Repository layout
 
 | Path | Purpose |
