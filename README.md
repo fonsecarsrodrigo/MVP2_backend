@@ -2,13 +2,12 @@
 
 ## System Diagram
 
-The system serves as Travel agency customer and travel-plan managementsystem.  The system is composed by two services, the "Bora Orneles Backend Service" and the "Bora Orneles Frontend Service".
+The system serves as Travel agency customer and travel-plan management system.  The system is composed by two services, the "Bora Orneles Backend Service" and the "Bora Orneles Frontend Service".
 The Frontend Service uses an external API, the "Via CEP" to acquire address information from CEP number.
 
 ```mermaid
 C4Context
-    title Bora Orneles Customer Area
-        Person(customerA, "Bora Orneles Customer")
+    title Bora Orneles Management System
         Person(employeeA, "Bora Orneles Employee")
 
     Enterprise_Boundary(b1, "VIA CEP - https://www.viacep.com.br")
@@ -17,9 +16,8 @@ C4Context
         Rel(Bora-FE, VIA_CEP-API, "")
     }
 
-    Enterprise_Boundary(b0, "Bora Orneles Customer Area API") {
+    Enterprise_Boundary(b0, "Bora Orneles Management System") {
 
-        BiRel(customerA, Bora-FE, "")
         BiRel(employeeA, Bora-FE, "")
 
         Container_Boundary(c0, " Frontend Service - bora-fe.docker") {
