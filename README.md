@@ -1,8 +1,8 @@
-# Bora Orneles — Customer Area API
+# Bora Orneles Management System
 
 ## System Diagram
 
-The system is composed by two services, the "Bora Orneles Backend Service" and the "Bora Orneles Frontend Service".
+The system serves as Travel agency customer and travel-plan managementsystem.  The system is composed by two services, the "Bora Orneles Backend Service" and the "Bora Orneles Frontend Service".
 The Frontend Service uses an external API, the "Via CEP" to acquire address information from CEP number.
 
 ```mermaid
