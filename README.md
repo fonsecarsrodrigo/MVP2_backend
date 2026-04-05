@@ -3,7 +3,7 @@
 ## System Diagram
 
 The system serves as Travel agency customer and travel-plan management system.  The system is composed by two services, the **Backend Service** and the **Frontend Service**.
-The **Frontend Service** uses an external API, the **Via CEP** to acquire address information from CEP number.
+The **Frontend Service** uses an external API, the [**Via CEP**](https://viacep.com.br/) to acquire address information from CEP number.
 
 ```mermaid
 C4Context
